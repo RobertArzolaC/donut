@@ -1,0 +1,11 @@
+# Import all base requirements
+-r default.txt
+
+# WSGI Handler
+gunicorn==19.6.0
+
+# Django debug toolbar
+django-debug-toolbar==1.11
+
+# Code linter
+pep8==1.7.1

@@ -1,0 +1,78 @@
+version: '3'
+
+volumes:
+  neo4j_data_dev:
+    driver: local
+  postgres_data_dev:
+    driver: local
+  postgres_backup_dev:
+    driver: local
+
+services:
+  postgres:
+    build: ./docker/postgres
+    restart: always
+    env_file: ./docker/environment/dev.env
+    ports:
+      - "5100:5432"
+    hostname: postgres
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+      - postgres_backup_dev:/backups
+
+  neo4j:
+    build:
+      context: .
+      dockerfile: ./docker/neo4j/development/Dockerfile
+    restart: always
+    env_file: ./docker/environment/dev.env
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    hostname: neo4j
+    volumes:
+      - neo4j_data_dev:/var/lib/neo4j/data
+
+  django:
+    build:
+      context: .
+      dockerfile: ./docker/django/development/Dockerfile
+    restart: always
+    env_file: ./docker/environment/dev.env
+    ports:
+      - "8000:8000"
+    hostname: django
+    depends_on:
+      - neo4j
+      - postgres
+    volumes:
+      - ./donut/backend:/src
+    command: sh start.sh
+
+  react:
+    build:
+      context: .
+      dockerfile: ./docker/react/development/Dockerfile
+    restart: always
+    env_file: ./docker/environment/dev.env
+    ports:
+      - "3000:3000"
+    hostname: react
+    depends_on:
+      - django
+    volumes:
+      - ./donut/frontend:/app
+      - /app/node_modules
+    command: sh start.sh
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/development/Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    hostname: nginx
+    depends_on:
+      - react
+    command: nginx -g 'daemon off;'

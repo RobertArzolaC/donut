@@ -1,0 +1,15 @@
+DEBUG=true
+ALLOWED_HOSTS=django, 0.0.0.0, 127.0.0.1 localhost
+SECRET_KEY=TqRCarDM27N0QXlvvINAtbebVTb8JEsr
+DJANGO_SETTINGS_MODULE=config.settings.development
+
+MAILGUN_API_KEY=[mailgun-api-key]
+MAILGUN_DEFAULT_FROM_EMAIL=[email]
+
+POSTGRES_DB=XXXXXXX
+POSTGRES_USER=XXXXXXX
+POSTGRES_PASSWORD=XXXXXXXXX
+
+EMAIL_PORT=1025
+EMAIL_HOST=localhost
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend

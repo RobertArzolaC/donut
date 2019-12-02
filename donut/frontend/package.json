@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.21",
     "connected-react-router": "^6.5.2",
+    "d3": "^5.14.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-logger": "^1.1.0",

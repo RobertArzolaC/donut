@@ -15,28 +15,6 @@ class WorkSpace(models.Model):
     def __str__(self):
         return self.name
 
-    @classmethod
-    def make_graph(cls, data):
-        entity_1 = data['actor']
-        entity_2 = data['related']
-        relation = data['relation']
-        workspace = data['workspace']
-
-        workspace, _ = cls.objects.get_or_create(name=workspace)
-        entity_1, _ = Entity.objects.get_or_create(name=entity_1, workspace=workspace)
-        entity_2, _ = Entity.objects.get_or_create(name=entity_2, workspace=workspace)
-        relationship, _ = Relationship.objects.get_or_create(name=relation)
-
-        association, _ = Association.objects.get_or_create(
-            entity_1=entity_1, entity_2=entity_2,
-            relationship=relationship, workspace=workspace)
-
-        graph.add_entity(entity_1)
-        graph.add_entity(entity_2)
-        graph.add_association(association)
-
-        return workspace
-
 
 class Entity(models.Model):
     name = models.CharField("Nombre", max_length=250, unique=True)

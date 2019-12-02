@@ -1,0 +1,41 @@
+{
+    "results": [
+        {
+            "columns": ["user", "entity"],
+            "data": [
+                {
+                    "graph": {
+                        "nodes": [
+                            {
+                                "id": "1",
+                                "labels": ["Perú"],
+                                "properties": {
+                                    "description": "País sudamericano"
+                                }
+                            },
+                            {
+                                "id": "2",
+                                "labels": ["Martín Vizcarra"],
+                                "properties": {
+                                    "description": "Presidente del Perú"
+                                }
+                            }
+                        ],
+                        "relationships": [
+                            {
+                                "id": "3",
+                                "type": "presidencia",
+                                "startNode": "1",
+                                "endNode": "2",
+                                "properties": {
+                                    "from": 1470002400000
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "errors": []
+}

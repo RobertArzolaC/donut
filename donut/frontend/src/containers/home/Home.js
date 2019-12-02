@@ -1,10 +1,12 @@
-import React from 'react';
-
+import React from "react";
+import GraphVisualizer from "./../../components/GraphVisualizer";
 
 function Home(props) {
   return (
-    <div>Hola mundo</div>
-  )
+    <div>
+      <GraphVisualizer/>
+    </div>
+  );
 }
 
 export default Home;
